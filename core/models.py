@@ -1,10 +1,11 @@
 from django.db import models
 from django.utils.text import slugify
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
 class Categoria(models.Model):
     nome = models.CharField(max_length=150, unique=True)
     slug = models.SlugField(max_length=150, unique=True, blank=True)
-    imagem = models.ImageField(upload_to='fotos_categorias/', null= True, blank=True)
+    imagem = models.ImageField(upload_to='fotos_categorias/', null= True, blank=True, storage=MediaCloudinaryStorage())
     exibir_na_homepage = models.BooleanField(default=False, null=True)
 
     def save(self, *args, **kwargs):
@@ -35,7 +36,7 @@ class Produto(models.Model):
     
 class ImagemProduto(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name='imagens')
-    imagem = models.ImageField(upload_to='fotos_produtos/')
+    imagem = models.ImageField(upload_to='fotos_produtos/', storage=MediaCloudinaryStorage())
 
     def __str__(self):
         return f"Imagem de {self.produto.nome}"
