@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRETY_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -115,7 +115,12 @@ CLOUDINARY_STORAGE = {
 }
 
 # Render exige domínio confiável para CSRF
-CSRF_TRUSTED_ORIGINS = [config('RENDER_EXTERNAL_HOSTNAME', default='')] if not DEBUG else []
+RENDER_HOST = config('RENDER_EXTERNAL_HOSTNAME', default='')
+
+if RENDER_HOST:
+    CSRF_TRUSTED_ORIGINS = [f"https://{RENDER_HOST}"]
+else:
+    CSRF_TRUSTED_ORIGINS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
