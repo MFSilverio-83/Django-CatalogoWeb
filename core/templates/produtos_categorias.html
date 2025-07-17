@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container mt-4">
+        <div class="categorias-titulo">
+            <h1>{{ categoria.nome }}</h1>
+        </div>
+
+        <div class="row">
+                {% for produto in produtos %}
+                    <div class="col-lg-4 col-md-6 col-12 mb-4">                        
+                        <div class="card h-100 card-custom detalhes_produto_card">                            
+                            {% if produto.imagens.all %}
+                                <div id="carousel-{{ produto.id }}" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        {% for imagem in produto.imagens.all %}
+                                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                                <img src="{{ imagem.imagem.url }}" class="d-block w-100 card-img-top" alt="Foto de {{ produto.nome }}">
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carousel-{{ produto.id }}" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carousel-{{ produto.id }}" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            {% else %}
+                                <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="Produto sem imagem">
+                            {% endif %}
+                            <div class="card-body d-flex flex-column"> <h5 class="card-title">{{ produto.nome }}</h5>                                
+                                <p class="card-text">{{ produto.preco_formatado }}</p>
+                                {% if produto.link_externo %}
+                                    <a href="{{ produto.link_externo }}" class="btn btn-primary mt-auto" target="_blank">Ver na Loja</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="col-12">
+                        <p class="text-center">Ainda não há produtos nesta categoria.</p>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+
+{% endblock %}
