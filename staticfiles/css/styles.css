@@ -1,3 +1,4 @@
+
 /* --- GERAL E RESET --- */
 body, h1, h2, h3, p, ul, li, a {
     margin: 0;
@@ -14,11 +15,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px; /* Ajuste conforme desejado */
+    height: 80px;
     background-color: #FF69B4;
     color: #000000;
-    padding: 0px 10px; /* diminui a altura vertical */
-    border-bottom: 1px solid #DC143C; /* adiciona a borda */
+    padding: 0px 10px;
+    border-bottom: 1px solid #DC143C;
 }
 
 header .logo img {
@@ -47,7 +48,7 @@ header nav ul li a:hover {
 header .social-media {
     display: flex;
     gap: 15px;
-    margin-left: auto; /* Mantém os ícones alinhados à direita */
+    margin-left: auto;
 }
 
 header .social-media img {
@@ -60,7 +61,7 @@ header .social-media img:hover {
     transform: scale(1.2);
 }
 
-/* --- ESTILO BASE PARA TODOS OS CARDS (PRINCÍPIO DRY) --- */
+/* --- ESTILO BASE PARA TODOS OS CARDS --- */
 
 .card-custom {
     border: 1px solid #ddd;
@@ -75,7 +76,6 @@ header .social-media img:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo para os links e parágrafos dentro de QUALQUER card customizado */
 .card-custom a {
     color: #DC143C;
     text-decoration: none;
@@ -85,34 +85,39 @@ header .social-media img:hover {
     color: #d46f6f;
 }
 
-.card-custom .card-title { /* Para o h5 dos produtos */
+.card-custom .card-title {
     color: #DC143C;
 }
 
-/* --- COR DO PREÇO --- */
 .card-custom p {
     font-weight: bold;
-    color: #DC143C; /* Vermelho cereja — ou escolha a cor que quiser */
+    color: #DC143C;
 }
 
-/* --- ESTILOS DE IMAGEM DENTRO DOS CARDS --- */
-
-/* Para as imagens quadradas das CATEGORIAS na Homepage */
 .categoria-card .card-img-top,
 .categoria-card img {
     width: 100%;
     height: auto;
-    aspect-ratio: 1 / 1; /* Força a imagem a ser quadrada */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.card-custom img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
 }
 
 @media (max-width: 576px) {
     .categoria-card img {
-        max-height: 120px; /* Experimente 120px se quiser mais compacto */
+        max-height: 120px;
     }
 
     .categoria-card {
         margin-bottom: 10px;
+        flex: 0 0 50%;
+        max-width: 50%;
     }
 
     .nome-categoria {
@@ -120,15 +125,13 @@ header .social-media img:hover {
     }
 }
 
-/* Para as imagens retangulares dos PRODUTOS na página de categoria */
 .detalhes_produto_card .card-img-top {
     width: 100%;
-    height: 220px; /* Altura fixa para as imagens do carrossel */
-    object-fit: cover; /* Cobre o espaço sem distorcer */
+    height: 220px;
+    object-fit: cover;
 }
 
-
-/* --- SEÇÕES DE CONTEÚDO (Títulos, etc.) --- */
+/* --- TÍTULOS E BANNER --- */
 .banner-container {
     width: 100%;
     overflow: hidden;
@@ -162,8 +165,7 @@ header .social-media img:hover {
     font-size: 16px;
 }
 
-/* --- CARROSSEL DE IMAGENS --- */
-/* Estilo para as setas do carrossel (mantido) */
+/* --- CARROSSEL --- */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: rgba(99, 4, 4, 0.8);
@@ -171,7 +173,7 @@ header .social-media img:hover {
     padding: 10px;
 }
 
-/* --- ALTERAÇÃO DE COR NO COMPRE AQUI --- */
+/* --- BOTÃO COMPRE AQUI --- */
 .btn-primary {
     background-color: #FF69B4;
     border-color: #FFE4E1;
@@ -179,11 +181,11 @@ header .social-media img:hover {
 }
 
 .btn-primary:hover {
-    background-color: #b01032; /* Tom mais escuro no hover */
+    background-color: #b01032;
     border-color: #a00f2c;
 }
 
-/* --- FOOTER (RODAPÉ) --- */
+/* --- FOOTER --- */
 footer {
     background-color: #FF69B4;
     color: #DC143C;
@@ -191,7 +193,7 @@ footer {
     text-align: center;
     width: 100%;
     border-top: 1px solid #DC143C;
-    border-bottom: 1px solid #DC143C; /* adiciona a borda */
+    border-bottom: 1px solid #DC143C;
 }
 
 footer p {
