@@ -1,14 +1,14 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
 
     <div class="container mt-4"> 
-        <div class="row">            
+        <div class="row d-flex justify-content-center">            
             {% for categoria in categorias %}
-		<! -- abaixo existe a responsavidade do bootstrap, onde define tamanhos para diferentes telas -->            
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">                    
-                    <div class="card h-100 card-custom categoria-card"> 
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">                    
+                    <div class="card h-100 card-custom categoria-card w-100"> 
                         <a href="{% url 'produtos_categorias' categoria.slug %}">                            
                             {% if categoria.imagem %}
                                 <img src="{{ categoria.imagem.url }}" alt="{{ categoria.nome }}" class="img-fluid"> {% else %}
@@ -21,6 +21,5 @@
             {% endfor %}
         </div>
     </div>
-
 
 {% endblock %}
