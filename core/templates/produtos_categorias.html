@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -8,9 +9,9 @@
             <h1> Confira ofertas de {{ categoria.nome }} </h1>
         </div>
 
-        <div class="row">
+        <div class="row d-flex justify-content-center">
                 {% for produto in produtos %}
-                    <div class="col-lg-4 col-md-6 col-12 mb-4">                        
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">                        
                         <div class="card h-100 card-custom detalhes_produto_card">                            
                             {% if produto.imagens.all %}
                                 <div id="carousel-{{ produto.id }}" class="carousel slide" data-ride="carousel">
