@@ -5,7 +5,7 @@
 
     <div class="container mt-4">
         <div class="categorias-titulo">
-            <h1> Confira nossas ofertas de {{ categoria.nome }} </h1>
+            <h1> Confira ofertas de {{ categoria.nome }} </h1>
         </div>
 
         <div class="row">
@@ -36,7 +36,7 @@
                             <div class="card-body d-flex flex-column"> <h5 class="card-title">{{ produto.nome }}</h5>                                
                                 <p class="card-text">{{ produto.preco_formatado }}</p>
                                 {% if produto.link_externo %}
-                                    <a href="{{ produto.link_externo }}" class="btn btn-primary mt-auto" target="_blank"> Faça sua compra </a>
+                                    <a href="{{ produto.link_externo }}" class="btn btn-primary mt-auto" target="_blank"> Compre Aqui </a>
                                 {% endif %}
                             </div>
                         </div>
