@@ -16,7 +16,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    background-color: #FF69B4;
+    background-color: #FA9DCC;
     color: #000000;
     padding: 0px 10px;
     border-bottom: 1px solid #DC143C;
@@ -182,7 +182,7 @@ header .social-media img:hover {
 
 /* --- BOTÃO COMPRE AQUI --- */
 .btn-primary {
-    background-color: #FF69B4;
+    background-color: #FA9DCC;
     border-color: #FFE4E1;
     color: white;
 }
@@ -194,7 +194,7 @@ header .social-media img:hover {
 
 /* --- FOOTER --- */
 footer {
-    background-color: #FF69B4;
+    background-color: #FA9DCC;
     color: #DC143C;
     padding: 10px 0;
     text-align: center;
