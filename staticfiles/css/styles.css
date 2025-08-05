@@ -110,18 +110,25 @@ header .social-media img:hover {
 }
 
 @media (max-width: 576px) {
-    .categoria-card img {
-        max-height: 120px;
+    .categoria-card {
+        margin-bottom: 16px;
     }
 
-    .categoria-card {
-        margin-bottom: 10px;
+    .categoria-card img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    .col-sm-6,
+    .col-6 {
         flex: 0 0 50%;
         max-width: 50%;
     }
 
     .nome-categoria {
-        font-size: 14px;
+        font-size: 16px;
     }
 }
 
