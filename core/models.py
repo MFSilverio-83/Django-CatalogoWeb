@@ -19,7 +19,7 @@ class Categoria(models.Model):
 class Produto(models.Model):
     nome = models.CharField(max_length=250, null= True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null= True, blank=True)
-    preco = models.DecimalField(max_digits=10, decimal_places=2)   
+    preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True)   
     link_externo = models.URLField(max_length=500, null=True, blank=True)
     ativo = models.BooleanField(default=True)
 
