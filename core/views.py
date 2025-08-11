@@ -18,7 +18,7 @@ class CategoriaProdutoView(ListView):
 
     def get_queryset(self):
         category_slug = self.kwargs['category_slug']
-        return Produto.objects.filter(categoria__slug=category_slug, ativo=True)
+        return Produto.objects.filter(categoria__slug=category_slug, ativo=True).order_by('id')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
