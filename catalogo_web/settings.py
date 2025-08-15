@@ -59,17 +59,11 @@ WSGI_APPLICATION = 'catalogo_web.wsgi.application'
 # Banco de dados
 RAILWAY_ENV = os.environ.get('RAILWAY_ENV', 'False') == 'True'
 
-if RAILWAY_ENV:
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600)
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600)
+}
 
 # Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
