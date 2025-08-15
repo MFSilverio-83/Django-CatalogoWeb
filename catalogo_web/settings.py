@@ -68,9 +68,17 @@ WSGI_APPLICATION = 'catalogo_web.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(default=f'sqlite:///{BASE_DIR}/db.sqlite3')
-}
+if config('RAILWAY_ENV', default=False, cast=bool):
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600)
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -120,10 +128,10 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUDINARY_API_SECRET'),
 }
 # Render exige domínio confiável para CSRF
-RENDER_HOST = config('RENDER_EXTERNAL_HOSTNAME', default='')
+RAILWAY_HOST = config('RAILWAY_PUBLIC_DOMAIN', default='')
 
-if RENDER_HOST:
-    CSRF_TRUSTED_ORIGINS = [f"https://{RENDER_HOST}"]
+if RAILWAY_HOST:
+    CSRF_TRUSTED_ORIGINS = [f"https://{RAILWAY_HOST}"]
 else:
     CSRF_TRUSTED_ORIGINS = []
 
