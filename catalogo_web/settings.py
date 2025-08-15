@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-from decouple import config, Csv
+from decouple import Config, Csv
 import dj_database_url
 import cloudinary 
 import cloudinary.uploader 
