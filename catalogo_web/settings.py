@@ -1,29 +1,18 @@
 from pathlib import Path
 import os
-from decouple import Config, Csv
 import dj_database_url
 import cloudinary 
 import cloudinary.uploader 
 import cloudinary.api
 
-env = Config(os.environ)
-print("SECRET_KEY:", os.environ.get("SECRET_KEY"))
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# Segurança
+SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-secret-key')
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1').split(',')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', default='127.0.0.1', cast=Csv())
-
-# Application definition
+# Apps
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
@@ -33,7 +22,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    # Apps de armazenamento para o Cloudinary
     'cloudinary_storage',
     'cloudinary',
 ]
@@ -68,10 +56,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'catalogo_web.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# Banco de dados
+RAILWAY_ENV = os.environ.get('RAILWAY_ENV', 'False') == 'True'
 
-if config('RAILWAY_ENV', default=False, cast=bool):
+if RAILWAY_ENV:
     DATABASES = {
         'default': dj_database_url.config(conn_max_age=600)
     }
@@ -83,89 +71,59 @@ else:
         }
     }
 
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
+# Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
+# Internacionalização
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
+# Arquivos estáticos
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# Cloudinary via django-storages
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Cloudinary
 DEFAULT_FILE_STORAGE = 'storages.backends.cloudinary.CloudinaryStorage'
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': env('CLOUDINARY_API_KEY'),
-    'API_SECRET': env('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
-# Render exige domínio confiável para CSRF
-RAILWAY_HOST = env('RAILWAY_PUBLIC_DOMAIN', default='')
 
+cloudinary.config(
+    cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key = os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret = os.environ.get('CLOUDINARY_API_SECRET')
+)
+
+# CSRF confiável
+RAILWAY_HOST = os.environ.get('RAILWAY_PUBLIC_DOMAIN', '')
 if RAILWAY_HOST:
     CSRF_TRUSTED_ORIGINS = [f"https://{RAILWAY_HOST}"]
 else:
     CSRF_TRUSTED_ORIGINS = []
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
+# Chave primária padrão
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Jazzmin
 JAZZMIN_SETTINGS = {
-    # Título que aparecerá na aba do navegador e na tela de login
     "site_title": "Meu Catálogo Admin",
-
-    # Título no topo da barra de navegação (pode ser abreviado)
     "site_header": "Meu Catálogo",
-
-    # Logo que aparecerá na tela de login e no topo da barra de navegação
-    # Coloque o caminho para o seu logo dentro da pasta 'static'
     "site_logo": "images/Logo_sem_fundo.png",
-
-    # Texto de boas-vindas na tela de login
     "welcome_sign": "Bem-vindo ao Admin do Catálogo",
-
-    # Copyright no rodapé
     "copyright": "Vip Tecnologia",
-
-    # Visual
     "theme": "superhero",
 }
-
-cloudinary.config(
-    cloud_name = config('CLOUDINARY_CLOUD_NAME'),
-    api_key = config('CLOUDINARY_API_KEY'),
-    api_secret = config('CLOUDINARY_API_SECRET')
-)
