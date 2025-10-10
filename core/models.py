@@ -20,7 +20,6 @@ class Produto(models.Model):
     nome = models.CharField(max_length=250, null= True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null= True, blank=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True)   
-    link_externo = models.URLField(max_length=500, null=True, blank=True)
     ativo = models.BooleanField(default=True)
 
     def __str__(self):
@@ -33,6 +32,12 @@ class Produto(models.Model):
         # Formata o número para ter 2 casas decimais e troca o ponto por vírgula.
         preco_str = f'R$ {self.preco:.2f}'.replace('.', ',')
         return preco_str
+
+    def link_whatsapp(self):
+        # 📱 Coloque aqui o número de telefone da loja no formato internacional
+        numero = '5535998102172'
+        mensagem = f'Olá! Tenho interesse no produto: {self.nome}'
+        return f'https://wa.me/{numero}?text={mensagem}'
     
 class ImagemProduto(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name='imagens')
