@@ -37,8 +37,8 @@
                             {% endif %}
                             <div class="card-body d-flex flex-column"> <h5 class="card-title">{{ produto.nome }}</h5>                                
                                 <p class="card-text">{{ produto.preco_formatado }}</p>
-                                {% if produto.link_externo %}
-                                    <a href="{{ produto.link_externo }}" class="btn btn-primary mt-auto" target="_blank"> Compre Aqui </a>
+                                {% if produto.link_whatsapp %}
+                                    <a href="{{ produto.link_whatsapp }}" class="btn btn-primary mt-auto" target="_blank"> Compre Aqui </a>
                                 {% endif %}
                             </div>
                         </div>
