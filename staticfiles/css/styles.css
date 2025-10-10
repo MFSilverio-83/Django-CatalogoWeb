@@ -16,7 +16,7 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    background-color: #FA9DCC;
+    background-color: #4f070f;
     color: #000000;
     padding: 0px 10px;
     border-bottom: 1px solid #DC143C;
@@ -77,21 +77,21 @@ header .social-media img:hover {
 }
 
 .card-custom a {
-    color: #DC143C;
+    color: #4f070f;
     text-decoration: none;
 }
 
 .card-custom a:hover {
-    color: #d46f6f;
+    color: #4f070f;
 }
 
 .card-custom .card-title {
-    color: #DC143C;
+    color: #4f070f;
 }
 
 .card-custom p {
     font-weight: bold;
-    color: #DC143C;
+    color: #4f070f;
 }
 
 .categoria-card .card-img-top,
@@ -161,7 +161,7 @@ header .social-media img:hover {
 .categorias-titulo h1,
 .categorias-titulo h3 {
     font-family: 'Arial', sans-serif;
-    color: #DC143C;
+    color: #4f070f;
 }
 
 .categorias-titulo h1 {
@@ -183,7 +183,7 @@ header .social-media img:hover {
 /* --- BOTÃO COMPRE AQUI --- */
 .btn-primary {
     background-color: #FA9DCC;
-    border-color: #FFE4E1;
+    border-color: #2e1b18;
     color: white;
 }
 
@@ -194,8 +194,8 @@ header .social-media img:hover {
 
 /* --- FOOTER --- */
 footer {
-    background-color: #FA9DCC;
-    color: #DC143C;
+    background-color: #4f070f;
+    color: #f3eff0;
     padding: 10px 0;
     text-align: center;
     width: 100%;
@@ -211,7 +211,7 @@ footer p {
 
 .pagina-inicial {
     font-size: 12px;
-    color: #DC143C;
+    color: #4f070f;
     margin-top: 4px;
     text-transform: uppercase;
     letter-spacing: 1px;
