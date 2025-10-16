@@ -13,7 +13,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">                        
                         <div class="card h-100 card-custom detalhes_produto_card">                            
                             {% if produto.imagens.all %}
-                                <div id="carousel-{{ produto.id }}" class="carousel slide" data-ride="carousel">
+                                <div id="carousel-{{ produto.id }}" class="carousel slide" data-interval="false">
                                     <div class="carousel-inner">
                                         {% for imagem in produto.imagens.all %}
                                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -54,7 +54,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="carouselModal-{{ produto.id }}" class="carousel slide" data-ride="carousel">
+                                    <div id="carouselModal-{{ produto.id }}" class="carousel slide" data-interval="false">
                                         <div class="carousel-inner">
                                             {% for imagem in produto.imagens.all %}
                                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
